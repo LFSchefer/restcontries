@@ -1,3 +1,5 @@
+import { msg, fmtDt } from "../../assets/i18n.js";
+
 export default class HeaderComponent extends HTMLElement {
 
   constructor() {
@@ -17,15 +19,18 @@ export default class HeaderComponent extends HTMLElement {
     return /*html*/`
     <header class="navbar navbar-expand-lg bg-body-tertiary bg-primary-subtle sticky-top shadow-sm">
       <div class="container-fluid">
-        <span class="mx-4">Rest Contries</span>
+        <span class="mx-4">${msg('rcbrand')}</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <a class="nav-link mx-3" aria-current="home" href="./index.html">Home</a>
-          <a class="nav-link mx-3" aria-current="table" href="./table.html">Table</a>
-          <a class="nav-link mx-3" aria-current="contact" href="./contact.html">Contact</a>
+          <a class="nav-link mx-3" aria-current="home" href="./index.html">${msg('rcMenuHome')}</a>
+          <a class="nav-link mx-3" aria-current="table" href="./table.html">${msg('rcMenuTable')}</a>
+          <a class="nav-link mx-3" aria-current="contact" href="./contact.html">${msg('rcMenuContact')}</a>
         </div>
+      </div>
+      <div class="container bg-dark shadow-sm">
+        <div class="text-light">${fmtDt(new Date())}</div>
       </div>
     </header>`;
   }
