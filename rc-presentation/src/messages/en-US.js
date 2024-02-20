@@ -5,6 +5,9 @@ const message = {
   'rcMenuHome': 'Home',
   'rcMenuTable': 'Contry Table',
   'rcMenuContact': 'Contact us !',
+  'rcHomeTitle': 'Card of contries',
+  'rcTableTitle': 'Table of contries',
+  'rcContactTitle': 'Contact Form'
 
 };
 

@@ -1,18 +1,14 @@
+import BaseComponent from "../../assets/BaseComponent.js";
 import { msg, fmtDt } from "../../assets/i18n.js";
 
-export default class HeaderComponent extends HTMLElement {
+export default class HeaderComponent extends BaseComponent {
 
   constructor() {
     super();
   }
 
-  connectedCallback() {
-    this.render();
-  }
-
-  render() {
-    const html = this.template();
-    this.innerHTML = html;
+  beforeRender() {
+    this.data.now = new Date();
   }
 
   template() {
@@ -24,13 +20,13 @@ export default class HeaderComponent extends HTMLElement {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <a class="nav-link mx-3" aria-current="home" href="./index.html">${msg('rcMenuHome')}</a>
-          <a class="nav-link mx-3" aria-current="table" href="./table.html">${msg('rcMenuTable')}</a>
-          <a class="nav-link mx-3" aria-current="contact" href="./contact.html">${msg('rcMenuContact')}</a>
+          <a class="nav-link mx-3" aria-current="home" href="/#/index">${msg('rcMenuHome')}</a>
+          <a class="nav-link mx-3" aria-current="table" href="/#/table">${msg('rcMenuTable')}</a>
+          <a class="nav-link mx-3" aria-current="contact" href="/#/contact">${msg('rcMenuContact')}</a>
         </div>
       </div>
       <div class="container bg-dark shadow-sm">
-        <div class="text-light">${fmtDt(new Date())}</div>
+        <div class="text-light">${fmtDt(this.data.now)}</div>
       </div>
     </header>`;
   }

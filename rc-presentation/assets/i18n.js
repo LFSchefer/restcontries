@@ -1,13 +1,15 @@
 let dateFormatter = null;
 let dictionary = null;
+let numberFormatter = null;
 
-function init(messages) { // json or js object
+function initI18n(messages) { // json or js object
   dictionary = messages
   const html = document.querySelector('html');
   html.setAttribute('lang', dictionary.locale.split('-')[0])
   const title = document.querySelector('title')
   title.innerText = dictionary.rcDocumentTitle;
   dateFormatter = new Intl.DateTimeFormat(dictionary.locale);
+  numberFormatter = new Intl.NumberFormat(dictionary.locale);
 }
 
 function msg(key) { // msg = message
@@ -18,4 +20,8 @@ function fmtDt(date) {
   return dateFormatter.format(date);
 }
 
-export {init, msg, fmtDt};
+function fmtNb(number) {
+  return numberFormatter.format(number);
+}
+
+export {initI18n, msg, fmtDt, fmtNb};

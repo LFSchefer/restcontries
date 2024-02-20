@@ -5,6 +5,9 @@ const message = {
   'rcMenuHome': 'Accueil',
   'rcMenuTable': 'Table des pays',
   'rcMenuContact': 'Contactez nous !',
+  'rcHomeTitle': 'Carte des pays',
+  'rcTableTitle': 'Table des pays',
+  'rcContactTitle': 'Formulaire de contact'
 
 };
 
