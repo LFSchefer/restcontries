@@ -1,7 +1,8 @@
-const message = {
+const messages = {
   locale: 'en-US',
+  dir: 'ltr',
   'rcDocumentTitle': 'Welcome in Rest Contries',
-  'rcbrand': 'Rest contries',
+  'rcBrand': 'Rest contries',
   'rcMenuHome': 'Home',
   'rcMenuTable': 'Contry Table',
   'rcMenuContact': 'Contact us !',
@@ -11,4 +12,4 @@ const message = {
 
 };
 
-export default message;
+export default messages;

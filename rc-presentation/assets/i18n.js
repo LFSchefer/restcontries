@@ -6,6 +6,7 @@ function initI18n(messages) { // json or js object
   dictionary = messages
   const html = document.querySelector('html');
   html.setAttribute('lang', dictionary.locale.split('-')[0])
+  html.setAttribute('dir', dictionary.dir)
   const title = document.querySelector('title')
   title.innerText = dictionary.rcDocumentTitle;
   dateFormatter = new Intl.DateTimeFormat(dictionary.locale);
