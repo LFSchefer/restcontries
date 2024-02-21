@@ -9,7 +9,8 @@ export default class HomeComponent extends BaseComponent {
   }
 
   async beforeRender() {
-    const url ="https://restcountries.com/v3.1/region/europe?fields=name,capital,flags,population";
+    // const url ="https://restcountries.com/v3.1/region/europe?fields=name,capital,flags,population";
+    const url = "http://localhost:8080/api/countries";
     const contries = await getJson(url);
     this.data.contries = contries;
     // console.log(contries)
@@ -31,10 +32,10 @@ export default class HomeComponent extends BaseComponent {
     return `
     <div class="col ">
       <div class="card shadow-sm h-100">
-        <img src="${contry.flags.png}" class="card-img-top border-bottom" alt="${contry.flags.alt}">
+        <img src="${contry.flagUrlPng}" class="card-img-top border-bottom" alt="">
         <div class="card-body">
-          <h2 class="card-title">${contry.name.official}</h2>
-          <h3>${contry.capital[0]}</h3>
+          <h2 class="card-title">${contry.name}</h2>
+          <h3>${contry.capital}</h3>
           <span class="text-nowrap">
             <i class="bi bi-people-fill"></i> ${fmtNb(contry.population)}
           </span>

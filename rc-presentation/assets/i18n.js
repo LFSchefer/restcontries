@@ -4,7 +4,7 @@ let numberFormatter = null;
 
 function initI18n(messages) { // json or js object
   dictionary = messages
-  console.log(dictionary)
+  // console.log(dictionary)
   const html = document.querySelector('html');
   html.setAttribute('lang', dictionary.locale.split('-')[0])
   html.setAttribute('dir', dictionary.dir)
