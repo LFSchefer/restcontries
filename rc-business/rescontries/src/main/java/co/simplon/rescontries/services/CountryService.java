@@ -1,9 +1,11 @@
-package co.simplon.rescontries;
+package co.simplon.rescontries.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import co.simplon.rescontries.dtos.Country;
 
 @Service
 public class CountryService {
