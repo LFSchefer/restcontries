@@ -21,6 +21,7 @@ export default class HeaderComponent extends BaseComponent {
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <a class="nav-link mx-3" aria-current="table" href="/#/table">${msg('rcMenuTable')}</a>
+          <a class="nav-link mx-3" aria-current="table" href="/#/add-country">${msg('rcMenuCreate')}</a>
           <a class="nav-link mx-3" aria-current="contact" href="/#/contact">${msg('rcMenuContact')}</a>
         </div>
       </div>

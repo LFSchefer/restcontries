@@ -12,6 +12,10 @@ const routes = {
     {
       name: 'contact',
       component: 'ContactComponent'
+    },
+    {
+      name: 'add-country',
+      component: 'AddCountryComponent'
     }
   ]
 }

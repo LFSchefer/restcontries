@@ -14,6 +14,7 @@ async function lng() {
 import HomeComponent from "./components/HomeComponent.js";
 import TableComponent from "./components/TableComponent.js";
 import ContactComponent from "./components/ContactComponent.js";
+import AddCountryComponent from "./components/AddCountryComponent.js";
 import {initI18n} from "../assets/i18n.js";
 import routes from "./routes/routes.js";
 import initRouter from '../assets/router.js';
@@ -24,6 +25,7 @@ customElements.define('rc-header', HeaderComponent);
 customElements.define('rc-homecomponent', HomeComponent);
 customElements.define('rc-tablecomponent', TableComponent);
 customElements.define('rc-contactcomponent', ContactComponent);
+customElements.define('rc-addcountrycomponent', AddCountryComponent)
 initI18n(messages);
 initRouter(routes);
 

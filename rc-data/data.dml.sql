@@ -16,7 +16,7 @@ VALUES
 5352000,
 'State of Eritrea',
 117600,
-'er',
+'.er',
 'ER',
 'https://mainfacts.com/media/images/coats_of_arms/er.png',
 'https://goo.gl/maps/HRyqUpnPwwG6jY5j6'
@@ -27,7 +27,7 @@ VALUES
 5057677,
 'Republic of Liberia',
 111369,
-'lr',
+'.lr',
 'LR',
 'https://mainfacts.com/media/images/coats_of_arms/lr.png',
 'https://goo.gl/maps/4VsHsc2oeGeRL3wg6'
@@ -38,7 +38,7 @@ VALUES
 18100,
 'Cook Islands',
 236,
-'ck',
+'.ck',
 'CK',
 'https://mainfacts.com/media/images/coats_of_arms/ck.png',
 'https://goo.gl/maps/nrGZrvWRGB4WHgDC9'
@@ -49,7 +49,7 @@ VALUES
 28435943,
 'Bolivarian Republic of Venezuela',
 916445,
-'ve',
+'.ve',
 'VE',
 'https://mainfacts.com/media/images/coats_of_arms/ve.png',
 'https://goo.gl/maps/KLCwDN8sec7z2kse9'
@@ -60,7 +60,7 @@ VALUES
 6031187,
 'Turkmenistan',
 488100,
-'tm',
+'.tm',
 'TM',
 'https://mainfacts.com/media/images/coats_of_arms/tm.png',
 'https://goo.gl/maps/cgfUcaQHSWKuqeKk9'
