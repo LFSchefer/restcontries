@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.rescontries.dtos.CountryAdminView;
 import co.simplon.rescontries.dtos.CountryCreate;
 import co.simplon.rescontries.dtos.CountryView;
+import co.simplon.rescontries.entities.Country;
 import co.simplon.rescontries.services.CountryService;
 import jakarta.validation.Valid;
 
@@ -29,9 +31,34 @@ public class RescountriesController {
 	this.service = service;
     }
 
-    @GetMapping("/test")
-    String test() {
-	return "coucou";
+    @GetMapping("/derived")
+    List<Country> derived(@RequestParam("population") int popalution, @RequestParam("country") String country) {
+	return service.derived(popalution, country);
+    }
+
+    @GetMapping("/sql")
+    List<Country> sql(@RequestParam("population") int popalution, @RequestParam("country") String country) {
+	return service.sql(popalution, country);
+    }
+
+    @GetMapping("/jpql")
+    List<Country> jpql(@RequestParam("population") int popalution, @RequestParam("country") String country) {
+	return service.jpql(popalution, country);
+    }
+
+    @GetMapping("/java")
+    List<Country> java(@RequestParam("population") int popalution, @RequestParam("country") String country) {
+	return service.java(popalution, country);
+    }
+
+    @GetMapping("/entitySql")
+    List<Country> entitySql(@RequestParam("population") int popalution, @RequestParam("country") String country) {
+	return service.entitySql(popalution, country);
+    }
+
+    @GetMapping("/entityJpql")
+    List<Country> entityJpql(@RequestParam("population") int popalution, @RequestParam("country") String country) {
+	return service.entityJpql(popalution, country);
     }
 
     @GetMapping("/all")
