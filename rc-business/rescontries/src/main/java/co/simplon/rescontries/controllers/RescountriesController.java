@@ -61,6 +61,11 @@ public class RescountriesController {
 	return service.entityJpql(popalution, country);
     }
 
+    @GetMapping("/jdbc")
+    List<Country> jdbc(@RequestParam("population") int popalution, @RequestParam("country") String country) {
+	return service.jdbc(popalution, country);
+    }
+
     @GetMapping("/all")
     List<CountryView> getContries() {
 	return service.contryList();
