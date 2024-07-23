@@ -145,7 +145,6 @@ public class CountryService {
 
     public List<Country> jdbc(int population, String country) {
 	List<Country> countryList = new ArrayList<>();
-
 	// Preparing query
 	String query = String.format(
 		"select * from t_countries where country_population > %s and country_name LIKE concat('%%','%s','%%') order by country_area DESC",
@@ -154,13 +153,10 @@ public class CountryService {
 	    // Establishing connection
 	    Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/restcountries", "postgres",
 		    "postgres");
-
 	    // Create a statement
 	    Statement stmt = con.createStatement();
-
 	    // Execute the query
 	    ResultSet resultSet = stmt.executeQuery(query);
-
 	    // Process the results
 	    while (resultSet.next()) {
 		Country countryResult = new Country();
