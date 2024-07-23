@@ -3,7 +3,6 @@ package co.simplon.rescontries.services;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,38 +145,42 @@ public class CountryService {
 
     public List<Country> jdbc(int population, String country) {
 	List<Country> countryList = new ArrayList<>();
+
+	// Preparing query
 	String query = String.format(
 		"select * from t_countries where country_population > %s and country_name LIKE concat('%%','%s','%%') order by country_area DESC",
 		population, country);
-	try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/restcountries", "postgres",
-		"postgres")) {
-	    try (Statement stmt = con.createStatement()) {
-		try (ResultSet resultSet = stmt.executeQuery(query)) {
+	try {
+	    // Establishing connection
+	    Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/restcountries", "postgres",
+		    "postgres");
 
-		    while (resultSet.next()) {
-			Country countryResult = new Country();
-			countryResult.setId(resultSet.getLong("id"));
-			countryResult.setFlagPng(resultSet.getString("flag_png"));
-			countryResult.setCountryCapital(resultSet.getString("country_capital"));
-			countryResult.setCountryPopulation(resultSet.getInt("country_population"));
-			countryResult.setCountryName(resultSet.getString("country_name"));
-			countryResult.setCountryArea(resultSet.getFloat("country_area"));
-			countryResult.setTld(resultSet.getString("tld"));
-			countryResult.setIsoCode(resultSet.getString("iso_code"));
-			countryResult.setCoatOfArmsPng(resultSet.getString("coat_of_arms_png"));
-			countryResult.setGoogleMap(resultSet.getString("google_map"));
-			countryList.add(countryResult);
-		    }
-		} catch (Exception e) {
-		    System.out.println(e);
-		}
+	    // Create a statement
+	    Statement stmt = con.createStatement();
 
-	    } catch (Exception e) {
-		System.out.println(e);
+	    // Execute the query
+	    ResultSet resultSet = stmt.executeQuery(query);
+
+	    // Process the results
+	    while (resultSet.next()) {
+		Country countryResult = new Country();
+		countryResult.setId(resultSet.getLong("id"));
+		countryResult.setFlagPng(resultSet.getString("flag_png"));
+		countryResult.setCountryCapital(resultSet.getString("country_capital"));
+		countryResult.setCountryPopulation(resultSet.getInt("country_population"));
+		countryResult.setCountryName(resultSet.getString("country_name"));
+		countryResult.setCountryArea(resultSet.getFloat("country_area"));
+		countryResult.setTld(resultSet.getString("tld"));
+		countryResult.setIsoCode(resultSet.getString("iso_code"));
+		countryResult.setCoatOfArmsPng(resultSet.getString("coat_of_arms_png"));
+		countryResult.setGoogleMap(resultSet.getString("google_map"));
+		countryList.add(countryResult);
 	    }
-
-	} catch (SQLException e) {
-	    e.printStackTrace();
+	    resultSet.close();
+	    stmt.close();
+	    con.close();
+	} catch (Exception e) {
+	    System.out.println(e);
 	}
 	return countryList;
     }
