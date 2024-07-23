@@ -3,6 +3,8 @@ package co.simplon.rescontries.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import co.simplon.rescontries.dtos.CountryAdminView;
@@ -26,4 +28,29 @@ public interface CountryJpaRepository extends JpaRepository<Country, Long> {
 
     boolean existsByTldIgnoreCase(String value);
 
+    @Query(value = "select count(*) from t_countries", nativeQuery = true)
+    Integer testQuery();
+
+    List<Country> findByCountryPopulationGreaterThanAndCountryNameContainingOrderByCountryAreaDesc(int population,
+	    String country);
+
+    String SQL_QUERY = """
+    	select * from t_countries
+    	where country_population > :population
+    	and country_name LIKE concat('%',:country,'%')
+    	order by country_area DESC
+    	""";
+
+    String JPQL_QUERY = """
+    	select c from Country c
+    	where countryPopulation > ?1
+    	and countryName LIKE concat('%',?2,'%')
+    	order by countryArea DESC
+    	""";
+
+    @Query(value = SQL_QUERY, nativeQuery = true)
+    List<Country> sql(@Param("population") int population, @Param("country") String country);
+
+    @Query(value = JPQL_QUERY)
+    List<Country> jpql(int population, String country);
 }
