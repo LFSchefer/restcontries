@@ -29,11 +29,6 @@ public class RescountriesController {
 	this.service = service;
     }
 
-    @GetMapping("/test")
-    String test() {
-	return "coucou";
-    }
-
     @GetMapping("/all")
     List<CountryView> getContries() {
 	return service.contryList();
