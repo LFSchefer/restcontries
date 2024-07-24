@@ -3,7 +3,6 @@ package co.simplon.rescontries.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import co.simplon.rescontries.dtos.CountryAdminView;
@@ -26,8 +25,5 @@ public interface CountryJpaRepository extends JpaRepository<Country, Long> {
     boolean existsByIsoCodeIgnoreCase(String value);
 
     boolean existsByTldIgnoreCase(String value);
-
-    @Query(value = "select count(*) from t_countries", nativeQuery = true)
-    Integer testQuery();
 
 }

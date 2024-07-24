@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClient;
 
 import co.simplon.rescontries.dtos.CountryAdminView;
@@ -28,7 +27,6 @@ public class CountryService {
 	this.repository = repository;
     }
 
-    @Transactional(readOnly = true)
     public List<CountryView> contryList() {
 	return repository.findAllProjectedByOrderByCountryName();
     }
@@ -68,7 +66,6 @@ public class CountryService {
 	return repository.existsByTldIgnoreCase(value);
     }
 
-//    @Transactional
     public void importCountries() {
 	RestClient restClient = RestClient.create();
 	List<CountryImport> importedCountries = restClient.get().uri(
@@ -95,30 +92,16 @@ public class CountryService {
 
     }
 
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
     public List<Country> jdbc(int population, String country) {
 	List<Country> countryList = new ArrayList<>();
-	// Preparing query
 	String query = String.format(
 		"select * from t_countries where country_population > %s and country_name LIKE concat('%%','%s','%%') order by country_area DESC",
 		population, country);
 	try {
-	    // Establishing connection
 	    Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/restcountries", "postgres",
 		    "postgres");
-	    // Create a statement
 	    Statement stmt = con.createStatement();
-	    // Execute the query
 	    ResultSet resultSet = stmt.executeQuery(query);
-	    // Process the results
 	    while (resultSet.next()) {
 		Country countryResult = new Country();
 		countryResult.setId(resultSet.getLong("id"));
