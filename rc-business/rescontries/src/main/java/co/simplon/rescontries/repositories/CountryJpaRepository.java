@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import co.simplon.rescontries.dtos.CountryAdminView;
@@ -27,6 +28,9 @@ public interface CountryJpaRepository extends JpaRepository<Country, Long> {
 
     boolean existsByTldIgnoreCase(String value);
 
+    // #####################################################################
+    // ############################ DEMO ORM ###############################
+
     List<Country> findByCountryPopulationGreaterThanAndCountryNameContainingOrderByCountryAreaDesc(int population,
 	    String country);
 
@@ -37,6 +41,9 @@ public interface CountryJpaRepository extends JpaRepository<Country, Long> {
     	order by country_area DESC
     	""";
 
+    @Query(value = SQL_QUERY, nativeQuery = true)
+    List<Country> sql(@Param("population") int population, @Param("country") String country);
+
     String JPQL_QUERY = """
     	select c from Country c
     	where countryPopulation > :population
@@ -44,10 +51,10 @@ public interface CountryJpaRepository extends JpaRepository<Country, Long> {
     	order by countryArea DESC
     	""";
 
-    @Query(value = SQL_QUERY, nativeQuery = true)
-    List<Country> sql(int population, String country);
-
     @Query(value = JPQL_QUERY)
-    List<Country> jpql(int population, String country);
+    List<Country> jpql(@Param("population") int population, @Param("country") String country);
+
+    // ####################################################################
+    // ####################################################################
 
 }

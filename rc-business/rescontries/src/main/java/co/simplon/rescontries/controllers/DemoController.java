@@ -38,4 +38,9 @@ public class DemoController {
     public List<Country> entity(int population, String country) {
 	return demoService.entity(population, country);
     }
+
+    @GetMapping("/jdbc")
+    public List<Country> jdbc(int population, String country) {
+	return demoService.jdbc(population, country);
+    }
 }
